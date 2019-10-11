@@ -1,0 +1,34 @@
+#! /bin/sh
+
+sxhkd &
+
+# terminal firefox music editor
+bspc monitor -d term browser music code mail discord torrent files steam games
+
+bspc config border_width            1
+bspc config window_gap              20
+
+bspc config normal_border_color     "#282c34"
+bspc config focused_border_color    "#c8ae9d"
+
+bspc config split_ratio             0.52
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+
+bspc config external_rules_command "$XDG_CONFIG_HOME/bspwm/external_rules"
+
+#feh --bg-fill ./Pictures/Wallpapers/lockscreen.png &
+feh --bg-fill ./Documents/Laptop\ Data/DOCS\ PESSOAIS/Imagens/Wallpapers/wallpapers-master/Tech/gnulinux_teal.png &
+~/.config/polybar/launch.sh &
+
+exec compton &
+devmon &
+light-locker &
+eval $(awk -F'=' '/Exec=/ {print $2}' ~/.config/autostart/lxrandr-autostart.desktop) &
+update-checker 7200 &
+xcape -e 'Super_L=Super_L|Shift_L|space' &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+gnome-keyring-daemon &
+thunar --daemon &
+/usr/lib/mate-notification-daemon/mate-notification-daemon &
+sleep 1 && notify-send "Welcome back :)" &

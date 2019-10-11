@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# bspwm: external_rules_command
+
+id=${1?};
+instance=$3;
+class=$2;
+
+case $class in
+    ([fF]irefox) echo desktop=browser\ follow=on;;
+    ([vV]ivaldi-stable|[vV]ivaldi) echo desktop=browser\ follow=on;;
+    ([sS]urf) echo desktop=browser\ follow=on;;
+    (discord) echo desktop=discord\ follow=off;;
+    (code) echo desktop=code\ follow=on;;
+    ([tT]hunar) echo desktop=files \ follow=on;;
+    ([sS]potify) echo desktop=music\ follow=on;;
+    ('')
+        case $(ps -p "$(xdo pid $id)" -o comm= 2>/dev/null) in
+            (spotify) echo desktop=music\ follow=on;;
+        esac;;
+esac;
+
+# vim: set ft=sh :
+

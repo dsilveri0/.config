@@ -1,0 +1,317 @@
+;-------------------------------------------------
+;                                                ;
+;           Polybar config for Cranium           ;
+;                                                ;
+;-------------------------------------------------
+
+
+[colors]
+background = #282c34
+; slightly darker
+background-alt1 = #252830
+; even more slightly darker
+background-alt2 = #202228
+
+; white
+foreground = #ebebff
+; beige
+foreground-alt1 = #c8ae9d
+; orange
+foreground-alt2 = #dd672c
+
+[bar/Tony]
+width = 100%
+height = 24
+offset-x = 0%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 0
+
+border-size = 0
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;font-0 = Ubuntu:size=10;1
+;font-0 = SF Mono:size=8;1
+
+font-0 = Misc Termsyn:size=9;1
+font-1 = FontAwesome:fontformat=truetype:size=12;1
+font-3 = Font Awesome 5 Free:style=Regular:pixelsize=8;1
+font-4 = Font Awesome 5 Free:style=Solid:pixelsize=8;1
+font-5 = Font Awesome 5 Brands:pixelsize=8;1
+font-2 = sm4tik:pixelsize=10;1
+
+
+modules-left = bspwm spotify
+modules-center = date weather
+modules-right = cpu memory filesystem wired-up wired-down volume powermenu
+
+tray-position = none
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[module/weather]
+type = custom/script
+interval = 60
+format = <label>
+format-prefix = "   "
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt1}
+label = %output%
+exec = python ~/.config/polybar/weather.py
+
+
+[module/spotify]
+type = custom/script
+interval = 1
+bar-width = 50%
+format-prefix = "   "
+format-suffix = "  "
+format-prefix-background = ${colors.background-alt1}
+format-prefix-foreground = ${colors.foreground-alt1}
+format-suffix-background = ${colors.background-alt1}
+
+label = %output%
+label-background = ${colors.background-alt1}
+
+exec = python ~/.config/polybar/spotify_status.py -f '{artist}: {song}'
+
+
+[module/bspwm]
+type = internal/bspwm
+
+ws-icon-0 = term;
+ws-icon-1 = browser;
+ws-icon-2 = music;
+ws-icon-3 = code;
+ws-icon-4 = mail;
+ws-icon-5 = discord;
+ws-icon-6 = torrent;
+ws-icon-7 = files;
+ws-icon-8 = steam;
+ws-icon-9 = games;
+ws-icon-default = 
+;
+
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground-alt2}
+label-focused-background = ${colors.background-alt2}
+label-focused-padding = 4
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.foreground-alt1}
+label-occupied-background = ${colors.background-alt1}
+label-occupied-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt1}
+label-empty-background = ${colors.background-alt1}
+label-empty-padding = 2
+
+[module/wired-up]
+type = internal/network
+interface = enp0s3
+interval = 1.0
+
+format-connected-prefix = "   "
+format-connected-suffix = "  "
+format-connected-prefix-foreground = ${colors.foreground-alt1}
+format-connected-prefix-background = ${colors.background-alt1}
+format-connected-suffix-background = ${colors.background-alt1}
+label-connected-background = ${colors.background-alt1}
+label-connected = %upspeed:8%
+
+label-disconnected = 
+
+[module/wired-down]
+type = internal/network
+interface = enp0s3
+interval = 1.0
+
+format-connected-prefix = "   "
+format-connected-suffix = "  "
+format-connected-prefix-foreground = ${colors.foreground-alt1}
+format-connected-prefix-background = ${colors.background-alt1}
+format-connected-suffix-background = ${colors.background-alt1}
+label-connected-background = ${colors.background-alt1}
+label-connected = %downspeed:8%
+
+label-disconnected =
+
+[module/date]
+type = internal/date
+interval = 10
+
+; variables inside formats tags not supported :(
+
+date = "  %{F#c8ae9d}%{F-} %a %b %d  "
+date-alt = " %Y-%m-%d"
+
+time = "  %{F#c8ae9d}%{F-} %H:%M  "
+time-alt = "%H:%M:%S "
+
+label = %date% %time%
+
+[module/volume]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_05.0.analog-stereo
+
+master-soundcard = hw:0
+speaker-soundcard = hw:0
+headphone-soundcard = hw:0
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 1
+mapped = true
+
+format-muted-background = ${colors.background-alt1}
+format-muted-foreground = ${colors.foreground-alt1}
+
+format-volume-background = ${colors.background-alt1}
+format-volume = "%{F#c8ae9d}<ramp-volume>%{F-} <label-volume>"
+format-volume-prefix = "  "
+format-volume-suffix = "  "
+label-muted = "   mute   "
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = "      "
+label-open-background = ${colors.background-alt2}
+label-open-foreground = ${colors.foreground-alt2}
+label-close = "    cancel   "
+label-close-background = ${colors.background-alt2}
+label-close-foreground = ${colors.foreground-alt2}
+label-separator = " "
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = logout
+menu-0-0-exec = menu-open-1
+menu-0-1 = reboot
+menu-0-1-exec = menu-open-2
+menu-0-2 = "power off   "
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = "logout   "
+menu-1-1-exec = "pkill -U $USER"
+
+menu-2-0 = cancel
+menu-2-0-exec = menu-open-0
+menu-2-1 = "reboot   "
+menu-2-1-exec = "reboot"
+
+menu-3-0 = cancel
+menu-3-0-exec = menu-open-0
+menu-3-1 = "power off   "
+menu-3-1-exec = "poweroff"
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+format-mounted-prefix = "   "
+format-mounted-suffix = "  "
+format-mounted-prefix-foreground = ${colors.foreground-alt1}
+format-mounted-prefix-background = ${colors.background-alt1}
+format-mounted-suffix-background = ${colors.background-alt1}
+label-mounted = %percentage_used:2%%
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format-prefix = "   "
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt1}
+format-prefix-background = ${colors.background-alt1}
+format-suffix-background = ${colors.background-alt1}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 1
+format-prefix = "   "
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt1}
+format-prefix-background = ${colors.background-alt1}
+format-suffix-background = ${colors.background-alt1}
+label = %percentage_used:2%%
+
+
+
+
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected-prefix = "   "
+format-connected-suffix = "  "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %signal%
+
+format-disconnected = ""
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 95
+
+format-full-background = ${colors.background-mod2}
+format-charging-background = ${colors.background-mod1}
+format-charging = "⁣   <animation-charging> <label-charging>"
+format-charging-underline = #ffb52a
+
+format-charging-suffix = "   "
+
+format-discharging-background = ${colors.background-alt}
+format-discharging = "⁣  <ramp-capacity> <label-discharging>  "
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full =
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
