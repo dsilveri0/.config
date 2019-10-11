@@ -1,2 +1,2 @@
 # Dotfiles
-Manjaro BSPWM dotfiles
+Manjaro BSPWM dotfiles.
