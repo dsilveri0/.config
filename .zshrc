@@ -89,7 +89,7 @@ fi
 
 # Run on every terminal session
 #neofetch
-./pfetch/pfetch
+./pfetch
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

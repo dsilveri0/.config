@@ -6,10 +6,11 @@ sxhkd &
 bspc monitor -d term browser music code mail discord torrent files steam games
 
 bspc config border_width            1
-bspc config window_gap              20
+bspc config window_gap              10
 
 bspc config normal_border_color     "#282c34"
 bspc config focused_border_color    "#c8ae9d"
+bspc config focus_follows_pointer   true
 
 bspc config split_ratio             0.52
 bspc config borderless_monocle      true
@@ -18,9 +19,9 @@ bspc config gapless_monocle         true
 bspc config external_rules_command "$XDG_CONFIG_HOME/bspwm/external_rules"
 
 #feh --bg-fill ./Pictures/Wallpapers/lockscreen.png &
-feh --bg-fill ./Documents/Laptop\ Data/DOCS\ PESSOAIS/Imagens/Wallpapers/wallpapers-master/Tech/gnulinux_teal.png &
+feh --bg-fill ./Documents/493185.jpg &
 ~/.config/polybar/launch.sh &
-
+~/runvpn &
 exec compton &
 devmon &
 light-locker &

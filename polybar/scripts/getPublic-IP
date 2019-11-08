@@ -1,0 +1,5 @@
+#! /bin/bash
+
+#echo $(wget -qO- https://ipecho.net/plain)
+
+echo $(pvpn --ip)

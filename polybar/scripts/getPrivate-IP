@@ -1,0 +1,5 @@
+#! /bin/bash
+
+IP=$(ip -f inet addr show dev enp2s0 | sed -n 's/^ *inet *\([.0-9]*\).*/\1/p')
+
+echo $IP
