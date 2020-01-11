@@ -9,13 +9,10 @@ super + shift + w
 	screenlock
 
 # Suspends computer
-ctrl + shift + w
+super + ctrl + shift + w
 	systemctl suspend
 
-super + shift + n
-	$TERMINAL neomutt
-
-# Show keybindings
+# J33mnkeybindings
 super + F1
 	$TERMINAL -e keybindings.sh
 #
@@ -294,7 +291,8 @@ super + shift + e
 Print
 	scrot
 
-
+super + Print
+	scrot -s
 #
 # Media keys
 #

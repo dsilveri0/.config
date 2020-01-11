@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export TERM="st-256color"
+#export TERM="screen-256color"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -87,10 +88,6 @@ else
   export EDITOR='mvim'
 fi
 
-# Run on every terminal session
-#neofetch
-./pfetch
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -102,3 +99,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+alias serve="browser-sync start -b firefox --port 9000 --server -w"
+

@@ -20,13 +20,24 @@ Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'mattn/emmet-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ycm-core/youcompleteme'
 call plug#end()
 
 set bg=light
 set go=a
 set mouse=a
 set nohlsearch
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
+set tabstop=8
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
 
 " Some basics:
 	nnoremap c "_c
@@ -35,7 +46,7 @@ set clipboard+=unnamedplus
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
-    colorscheme dracula
+        colorscheme dracula
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -60,6 +71,20 @@ set clipboard+=unnamedplus
 	nm <leader>i :call ToggleIPA()<CR>
 	imap <leader>i <esc>:call ToggleIPA()<CR>a
 	nm <leader>q :call ToggleProse()<CR>
+
+" coc config
+let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-pairs',
+    \ 'coc-eslint',
+    \ 'coc-emmet',
+    \ 'coc-json',
+    \ 'coc-tsserver',
+    \ 'coc-python',
+    \ ]
+
+set hidden
+
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
