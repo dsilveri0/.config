@@ -1,4 +1,4 @@
-![GitHub Logo](rice.jpg)
+![GitHub Logo](my_setup.jpg)
 
 # Dotfiles
 
